@@ -53,3 +53,6 @@ const postList = [
         like: 32,
     },
 ]
+
+//# recupero elementi dal dom
+const containerElement = document.getElementById('container');
