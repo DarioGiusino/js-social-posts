@@ -103,9 +103,11 @@ containerElement.innerHTML = createFeed(postList);
 //# eventi dinamici
 //per ogni post
 postList.forEach((post) => {
+    //destructuring di ciò che serve
+    const {id, date} = post;
     //recupero like button e numero di like
-    const likeButton = document.querySelector(`[data-postid="${post.id}"]`);
-    let likeNumber = document.getElementById(`like-counter-${post.id}`);
+    const likeButton = document.querySelector(`[data-postid="${id}"]`);
+    let likeNumber = document.getElementById(`like-counter-${id}`);
     // // console.log(likeNumber);
     //imposto variabile per stabilire se il post ha like
     let isLiked = false;
