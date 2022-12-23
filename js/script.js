@@ -31,28 +31,70 @@ const postList = [
         profileImg: 'https://picsum.photos/300/300?random=1',
         date: '12-27-2014',
         text: 'Placeat libero ipsa nobis ipsum quibusdam quas harum ut. Distinctio minima iusto. Ad ad maiores et sint voluptate recusandae architecto. Et nihil ullam aut alias.',
-        postImg: 'https://picsum.photos/300/300?random=1',
+        postImg: 'https://picsum.photos/300/300?random=2',
         like: 57,
     },
     {
         id: 2,
         name: 'Random Girl',
-        profileImg: 'https://picsum.photos/300/300?random=1',
+        profileImg: 'https://picsum.photos/300/300?random=3',
         date: '07-12-2005',
         text: 'Placeat libero ipsa nobis ipsum quibusdam quas harum ut. Distinctio minima iusto. Ad ad maiores et sint voluptate recusandae architecto. Et nihil ullam aut alias.',
-        postImg: 'https://picsum.photos/300/300?random=1',
+        postImg: 'https://picsum.photos/300/300?random=4',
         like: 14,
     },
     {
         id: 3,
         name: 'Random Kid',
-        profileImg: 'https://picsum.photos/300/300?random=1',
+        profileImg: 'https://picsum.photos/300/300?random=5',
         date: '11-16-2019',
         text: 'Placeat libero ipsa nobis ipsum quibusdam quas harum ut. Distinctio minima iusto. Ad ad maiores et sint voluptate recusandae architecto. Et nihil ullam aut alias.',
-        postImg: 'https://picsum.photos/300/300?random=1',
+        postImg: 'https://picsum.photos/300/300?random=6',
         like: 32,
     },
 ]
 
+//# funzioni
+//funzione che, dato un array di oggetti, crea un feed di post
+const createFeed = (array) => {
+    const feed = array.reduce((acc, {name, profileImg, date, text, postImg, like}) => 
+    acc + `
+    <div class="post">
+    <div class="post__header">
+      <div class="post-meta">
+        <div class="post-meta__icon">
+          <img class="profile-pic" src="${profileImg}" alt="${name}" />
+        </div>
+        <div class="post-meta__data">
+          <div class="post-meta__author">${name}</div>
+          <div class="post-meta__time">${date}</div>
+        </div>
+      </div>
+    </div>
+    <div class="post__text">${text}</div>
+    <div class="post__image">
+      <img src="${postImg}" alt="" />
+    </div>
+    <div class="post__footer">
+      <div class="likes js-likes">
+        <div class="likes__cta">
+          <button class="like-button js-like-button" href="#" data-postid="1">
+            <i class="like-button__icon fas fa-thumbs-up" aria-hidden="true"></i>
+            <span class="like-button__label">Mi Piace</span>
+          </button>
+        </div>
+        <div class="likes__counter">Piace a <b id="like-counter-1" class="js-likes-counter">${like}</b> persone</div>
+      </div>
+    </div>
+    </div>
+    `
+, '');
+    return feed;
+}
+
 //# recupero elementi dal dom
 const containerElement = document.getElementById('container');
+
+//# avvio pagina
+//creo feed di post all'interno dell'elemento preso
+containerElement.innerHTML = createFeed(postList);
