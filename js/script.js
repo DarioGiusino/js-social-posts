@@ -22,3 +22,34 @@ Se clicchiamo sul tasto "Mi Piace" cambiamo il colore al testo del bottone e inc
  2. Gestire l'assenza dell'immagine profilo con un elemento di fallback che contiene le iniziali dell'utente (es. Luca Formicola  => LF).
  3. Al click su un pulsante "Mi Piace" di un post, se abbiamo già cliccato dobbiamo decrementare il contatore e cambiare il colore del bottone.
 */
+
+//# creo lista di post
+const postList = [
+    {
+        id: 1,
+        name: 'Random Man',
+        profileImg: 'https://picsum.photos/300/300?random=1',
+        date: '12-27-2014',
+        text: 'Placeat libero ipsa nobis ipsum quibusdam quas harum ut. Distinctio minima iusto. Ad ad maiores et sint voluptate recusandae architecto. Et nihil ullam aut alias.',
+        postImg: 'https://picsum.photos/300/300?random=1',
+        like: 57,
+    },
+    {
+        id: 2,
+        name: 'Random Girl',
+        profileImg: 'https://picsum.photos/300/300?random=1',
+        date: '07-12-2005',
+        text: 'Placeat libero ipsa nobis ipsum quibusdam quas harum ut. Distinctio minima iusto. Ad ad maiores et sint voluptate recusandae architecto. Et nihil ullam aut alias.',
+        postImg: 'https://picsum.photos/300/300?random=1',
+        like: 14,
+    },
+    {
+        id: 3,
+        name: 'Random Kid',
+        profileImg: 'https://picsum.photos/300/300?random=1',
+        date: '11-16-2019',
+        text: 'Placeat libero ipsa nobis ipsum quibusdam quas harum ut. Distinctio minima iusto. Ad ad maiores et sint voluptate recusandae architecto. Et nihil ullam aut alias.',
+        postImg: 'https://picsum.photos/300/300?random=1',
+        like: 32,
+    },
+]
