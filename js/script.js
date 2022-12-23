@@ -57,7 +57,7 @@ const postList = [
 //# funzioni
 //funzione che, dato un array di oggetti, crea un feed di post
 const createFeed = (array) => {
-    const feed = array.reduce((acc, {name, profileImg, date, text, postImg, like}) => 
+    const feed = array.reduce((acc, {name, profileImg, date, text, postImg, like, id}) => 
     acc + `
     <div class="post">
     <div class="post__header">
@@ -78,12 +78,12 @@ const createFeed = (array) => {
     <div class="post__footer">
       <div class="likes js-likes">
         <div class="likes__cta">
-          <button class="like-button js-like-button" href="#" data-postid="1">
+          <button class="like-button js-like-button" href="#" data-postid="${id}">
             <i class="like-button__icon fas fa-thumbs-up" aria-hidden="true"></i>
             <span class="like-button__label">Mi Piace</span>
           </button>
         </div>
-        <div class="likes__counter">Piace a <b id="like-counter-1" class="js-likes-counter">${like}</b> persone</div>
+        <div class="likes__counter">Piace a <b id="like-counter-${id}" class="js-likes-counter">${like}</b> persone</div>
       </div>
     </div>
     </div>
@@ -93,8 +93,36 @@ const createFeed = (array) => {
 }
 
 //# recupero elementi dal dom
+//container del feed
 const containerElement = document.getElementById('container');
 
 //# avvio pagina
 //creo feed di post all'interno dell'elemento preso
 containerElement.innerHTML = createFeed(postList);
+
+//# eventi dinamici
+//per ogni post
+postList.forEach((post) => {
+    //recupero like button e numero di like
+    const likeButton = document.querySelector(`[data-postid="${post.id}"]`);
+    let likeNumber = document.getElementById(`like-counter-${post.id}`);
+    // // console.log(likeNumber);
+    //imposto variabile per stabilire se il post ha like
+    let isLiked = false;
+
+    //al click del like
+    likeButton.addEventListener('click', () =>{
+        //giro il valore della variabile
+        isLiked = !isLiked;
+        /*se non ha ricevuto like, aggiungo classe liked al button e incremento il contatore di like*/ 
+        if (isLiked){
+            likeButton.classList.add('like-button--liked');
+            likeNumber.innerText++;
+        } 
+        /*altrimenti rimuovo classe liked al button e decremento il contatore di like*/ 
+        else {
+            likeButton.classList.remove('like-button--liked');
+            likeNumber.innerText--;
+        }
+    });
+});
